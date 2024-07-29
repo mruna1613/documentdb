@@ -1,0 +1,42 @@
+name: Create DocumentDB Cluster
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  create-docdb:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v2
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: us-east-1
+
+    - name: Install AWS CLI
+      run: sudo apt-get install awscli -y
+
+    - name: Create DocumentDB Cluster
+      run: |
+        aws docdb create-db-cluster \
+          --db-cluster-identifier my-docdb-cluster \
+          --engine docdb \
+          --master-username yourMasterUsername \
+          --master-user-password yourMasterUserPassword \
+          --vpc-security-group-ids sg-xxxxxxxx \
+          --db-subnet-group-name my-docdb-subnet-group \
+          --backup-retention-period 1
+
+    - name: Create DocumentDB Instance
+      run: |
+        aws docdb create-db-instance \
+          --db-cluster-identifier my-docdb-cluster \
+          --db-instance-identifier my-docdb-instance \
+          --db-instance-class db.r5.large
