@@ -31,7 +31,7 @@ jobs:
           --master-username mrunmayee13 \
           --master-user-password mrunmayee123 \
           --vpc-security-group-ids sg-091cd38f69ed48328 \
-          --db-subnet-group-name subnet-08cd4eeb58dabd887 \
+          --db-subnet-group-name subnet-0f53e23c8d59f4fb4 \
           --backup-retention-period 1
 
     - name: Create DocumentDB Instance
