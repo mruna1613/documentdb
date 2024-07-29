@@ -28,10 +28,10 @@ jobs:
         aws docdb create-db-cluster \
           --db-cluster-identifier my-docdb-cluster \
           --engine docdb \
-          --master-username yourMasterUsername \
-          --master-user-password yourMasterUserPassword \
-          --vpc-security-group-ids sg-xxxxxxxx \
-          --db-subnet-group-name my-docdb-subnet-group \
+          --master-username mrunmayee13 \
+          --master-user-password mrunmayee123 \
+          --vpc-security-group-ids sg-091cd38f69ed48328 \
+          --db-subnet-group-name subnet-08cd4eeb58dabd887 \
           --backup-retention-period 1
 
     - name: Create DocumentDB Instance
